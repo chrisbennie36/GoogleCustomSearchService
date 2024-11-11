@@ -1,0 +1,17 @@
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\bin\Debug\net8.0\GoogleCustomSearchService.Api.Domain.deps.json
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\bin\Debug\net8.0\GoogleCustomSearchService.Api.Domain.dll
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\bin\Debug\net8.0\GoogleCustomSearchService.Api.Domain.pdb
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\bin\Debug\net8.0\GoogleCustomSearchService.Api.Data.dll
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\bin\Debug\net8.0\GoogleCustomSearchService.Shared.Enums.dll
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\bin\Debug\net8.0\GoogleCustomSearchService.Api.Data.pdb
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\bin\Debug\net8.0\GoogleCustomSearchService.Shared.Enums.pdb
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\GoogleCustomSearchService.Api.Domain.csproj.AssemblyReference.cache
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\GoogleCustomSearchService.Api.Domain.GeneratedMSBuildEditorConfig.editorconfig
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\GoogleCustomSearchService.Api.Domain.AssemblyInfoInputs.cache
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\GoogleCustomSearchService.Api.Domain.AssemblyInfo.cs
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\GoogleCustomSearchService.Api.Domain.csproj.CoreCompileInputs.cache
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\DomainDr.E790EE90.Up2Date
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\GoogleCustomSearchService.Api.Domain.dll
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\refint\GoogleCustomSearchService.Api.Domain.dll
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\GoogleCustomSearchService.Api.Domain.pdb
+c:\Projects\GoogleCustomSearchService\GoogleCustomSearchService\GoogleCustomSearchService.Api.Domain\obj\Debug\net8.0\ref\GoogleCustomSearchService.Api.Domain.dll
