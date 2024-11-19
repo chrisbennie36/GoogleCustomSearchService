@@ -37,7 +37,7 @@ namespace GoogleCustomSearchService.Api.Client
         public GoogleCustomSearchClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "http://localhost:5175";
+            BaseUrl = "http://localhost:5176";
             _httpClient = httpClient;
             Initialize();
         }
