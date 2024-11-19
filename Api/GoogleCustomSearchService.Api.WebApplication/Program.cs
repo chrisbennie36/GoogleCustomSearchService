@@ -2,6 +2,7 @@ using Serilog;
 using GoogleCustomSearchService.Api.Domain.Clients.Interfaces;
 using GoogleCustomSearchService.Api.Domain.Clients;
 using GoogleCustomSearchService.Api.Domain.Queries;
+using GoogleCustomSearchService.Api.WebApplication.ExceptionHandler;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddOpenApiDocument(config =>
 {
     config.Title = "Google Custom Search Engine Microservice";
 });
+
+builder.Services.AddProblemDetails().AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetGoogleResultsQuery).Assembly));
 builder.Services.AddAutoMapper(typeof(Program));
@@ -26,6 +29,9 @@ if(app.Environment.IsDevelopment())
     app.UseOpenApi();
     app.UseSwaggerUi();
 }
+
+app.UseStatusCodePages();
+app.UseExceptionHandler();
 
 app.MapControllers();
 

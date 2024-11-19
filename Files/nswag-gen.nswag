@@ -93,7 +93,7 @@
       "templateDirectory": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "../Api/GoogleCustomSearchService.Api.Client",
+      "output": "D:/Google/GoogleCustomSearchService.Api.Client/GeneratedClient.cs",
       "newLineBehavior": "Auto"
     }
   }
