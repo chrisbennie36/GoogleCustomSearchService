@@ -43,6 +43,8 @@ public class GoogleCustomSearchClient : IGoogleCustomSearchClient
             url += $"&start={paginationToken}";
         }
 
+        Log.Warning($"Final URL is: {url}");
+
         RestRequest request = new RestRequest(url);
 
         try
@@ -51,6 +53,7 @@ public class GoogleCustomSearchClient : IGoogleCustomSearchClient
 
             if(response == null || string.IsNullOrWhiteSpace(response.Content))
             {
+                Log.Error("Response from REST API for getting Google results is null");
                 return null;
             }
 
@@ -63,6 +66,7 @@ public class GoogleCustomSearchClient : IGoogleCustomSearchClient
             try
             {
                 GoogleCustomSearchResult? result = JsonConvert.DeserializeObject<GoogleCustomSearchResult>(response.Content);
+                Log.Warning($"Returning search results with count: {result.Items.Count()}");
                 return result;
             }
             catch(Exception e)

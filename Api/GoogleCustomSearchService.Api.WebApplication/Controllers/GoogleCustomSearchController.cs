@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using AutoMapper;
 using GoogleCustomSearchService.Api.Domain.Queries;
 using GoogleCustomSearchService.Api.WebApplication.Dtos;
@@ -23,25 +24,29 @@ public class GoogleCustomSearchController : ControllerBase
     [HttpPost]
     [ProducesResponseType<GoogleCustomSearchResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult> GetResults([FromBody] GoogleCustomSearchDto googleCustomSearchDto/*, IMemoryCache cache*/)
-    {        
-        var result = await sender.Send(mapper.Map<GetGoogleResultsQuery>(googleCustomSearchDto));
-
-        if(result == null)
+    public async Task<ActionResult<GoogleCustomSearchResponse>> GetResults([FromBody] GoogleCustomSearchDto googleCustomSearchDto)
+    {   
+        try
         {
-            return NotFound();
+            var result = await sender.Send(mapper.Map<GetGoogleResultsQuery>(googleCustomSearchDto));
+
+            return Ok(mapper.Map<GoogleCustomSearchResponse>(result));
         }
-
-        /*if(result != null)
+        catch(Exception e)
         {
-            MemoryCacheEntryOptions cacheOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromDays(2));
+            string traceId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
 
-            foreach(Item item in result.Items)
+            ProblemDetails problemDetails = new ProblemDetails
             {
-                cache.Set<string>(item.Link, item.Link, cacheOptions);
-            }
-        }*/
+                Detail = e.Message,
+                Status = 400,
+                Extensions = new Dictionary<string, object?> 
+                {
+                    { "traceId", traceId }
+                }
+            };
 
-        return Ok(mapper.Map<GoogleCustomSearchResponse>(result));
+            return Ok(new GoogleCustomSearchResponse { ProblemDetails = problemDetails });
+        }
     }
 }

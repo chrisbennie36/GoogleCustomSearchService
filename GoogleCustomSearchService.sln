@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleCustomSearchService.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleCustomSearchService.Api.Client", "Api\GoogleCustomSearchService.Api.Client\GoogleCustomSearchService.Api.Client.csproj", "{74BA33A2-DF3F-4DF3-B42B-CB7C2B09997A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{10F39353-B479-40E8-B65D-D572C6BCF3AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleCustomSearchService.Build.Infrastructure", "Build\GoogleCustomSearchService.Build.Infrastructure\GoogleCustomSearchService.Build.Infrastructure.csproj", "{06328C0E-1FDD-4E53-A0C7-8AE836A12E94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,8 +38,13 @@ Global
 		{74BA33A2-DF3F-4DF3-B42B-CB7C2B09997A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74BA33A2-DF3F-4DF3-B42B-CB7C2B09997A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74BA33A2-DF3F-4DF3-B42B-CB7C2B09997A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06328C0E-1FDD-4E53-A0C7-8AE836A12E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06328C0E-1FDD-4E53-A0C7-8AE836A12E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06328C0E-1FDD-4E53-A0C7-8AE836A12E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06328C0E-1FDD-4E53-A0C7-8AE836A12E94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{06328C0E-1FDD-4E53-A0C7-8AE836A12E94} = {10F39353-B479-40E8-B65D-D572C6BCF3AA}
 		{981C10AC-4483-4C51-AE35-4B25876EB31B} = {E1D750DB-F499-4519-8132-C12A70E9B8A8}
 		{7B96F386-F153-4EA4-9F62-50699D4CC2C0} = {E1D750DB-F499-4519-8132-C12A70E9B8A8}
 		{74BA33A2-DF3F-4DF3-B42B-CB7C2B09997A} = {E1D750DB-F499-4519-8132-C12A70E9B8A8}
