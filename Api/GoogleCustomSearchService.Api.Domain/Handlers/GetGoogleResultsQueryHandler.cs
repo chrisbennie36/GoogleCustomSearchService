@@ -15,9 +15,7 @@ public class GetGoogleResultsQueryHandler : IRequestHandler<GetGoogleResultsQuer
     }
 
     public async Task<GoogleCustomSearchResult?> Handle(GetGoogleResultsQuery request, CancellationToken cancellationToken)
-    {
-        throw new Exception("Testing Problem Details from GoogleCustomSearchService");
-        
+    {                
         GoogleCustomSearchResult? result = await googleCustomSearchClient.GetResults(request.QueryString, request.PaginationToken);
 
         return result;

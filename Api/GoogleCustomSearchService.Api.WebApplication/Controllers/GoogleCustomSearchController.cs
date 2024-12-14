@@ -34,19 +34,7 @@ public class GoogleCustomSearchController : ControllerBase
         }
         catch(Exception e)
         {
-            string traceId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-
-            ProblemDetails problemDetails = new ProblemDetails
-            {
-                Detail = e.Message,
-                Status = 400,
-                Extensions = new Dictionary<string, object?> 
-                {
-                    { "traceId", traceId }
-                }
-            };
-
-            return Ok(new GoogleCustomSearchResponse { ProblemDetails = problemDetails });
+            return BadRequest(GoogleCustomSearchResponse.FromProblemDetails(HttpContext, e.Message));
         }
     }
 }
