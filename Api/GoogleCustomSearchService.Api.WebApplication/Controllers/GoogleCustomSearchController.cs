@@ -1,7 +1,8 @@
-using System.Diagnostics;
 using AutoMapper;
 using GoogleCustomSearchService.Api.Domain.Queries;
+using GoogleCustomSearchService.Api.Domain.Results;
 using GoogleCustomSearchService.Api.WebApplication.Dtos;
+using GoogleCustomSearchService.Api.WebApplication.Extensions;
 using GoogleCustomSearchService.Api.WebApplication.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -26,15 +27,13 @@ public class GoogleCustomSearchController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<GoogleCustomSearchResponse>> GetResults([FromBody] GoogleCustomSearchDto googleCustomSearchDto)
     {   
-        try
-        {
-            var result = await sender.Send(mapper.Map<GetGoogleResultsQuery>(googleCustomSearchDto));
+        var result = await sender.Send(mapper.Map<GetGoogleResultsQuery>(googleCustomSearchDto));
 
-            return Ok(mapper.Map<GoogleCustomSearchResponse>(result));
-        }
-        catch(Exception e)
+        if(result.status == ResponseStatus.Success)
         {
-            return BadRequest(GoogleCustomSearchResponse.FromProblemDetails(HttpContext, e.Message));
+            return Ok(mapper.Map<GoogleCustomSearchResponse>(result.resultModel));
         }
+
+        return result.ToActionResult();   
     }
 }
