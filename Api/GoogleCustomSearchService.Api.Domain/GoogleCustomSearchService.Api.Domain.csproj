@@ -14,6 +14,11 @@
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Utilities.dll">
+      <HintPath>..\..\Refs\Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\GoogleCustomSearchService.Api.Data\GoogleCustomSearchService.Api.Data.csproj" />
     <ProjectReference Include="..\GoogleCustomSearchService.Shared.Enums\GoogleCustomSearchService.Shared.Enums.csproj" />
   </ItemGroup>

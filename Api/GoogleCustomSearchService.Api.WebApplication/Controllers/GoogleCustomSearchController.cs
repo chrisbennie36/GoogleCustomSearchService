@@ -1,11 +1,11 @@
 using AutoMapper;
 using GoogleCustomSearchService.Api.Domain.Queries;
-using GoogleCustomSearchService.Api.Domain.Results;
 using GoogleCustomSearchService.Api.WebApplication.Dtos;
-using GoogleCustomSearchService.Api.WebApplication.Extensions;
 using GoogleCustomSearchService.Api.WebApplication.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Utilities.ResultPattern;
+using Utilities.ResultPattern.Extensions;
 
 namespace GoogleCustomSearchService.Api.WebApplication.Controllers;
 

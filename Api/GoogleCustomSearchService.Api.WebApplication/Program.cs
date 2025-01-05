@@ -7,6 +7,7 @@ using Amazon.CloudWatchLogs;
 using Amazon.Runtime;
 using Serilog.Sinks.AwsCloudWatch;
 using Amazon;
+using Utilities.ConfigurationManager.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,13 +27,13 @@ builder.Services.AddTransient<IGoogleCustomSearchClient, GoogleCustomSearchClien
 
 var app = builder.Build();
 
-if(Boolean.Parse(builder.Configuration["AwsCloudwatchLogging:Enabled"]) == true)
+if(builder.Configuration.GetBoolValue("AwsCloudwatchLogging:Enabled") == true)
 {
-    var client = new AmazonCloudWatchLogsClient(new BasicAWSCredentials(builder.Configuration["AwsCloudwatchLogging:AccessKey"], builder.Configuration["AwsCloudwatchLogging:SecretKey"]), RegionEndpoint.USEast1);
+    var client = new AmazonCloudWatchLogsClient(new BasicAWSCredentials(builder.Configuration.GetStringValue("AwsCloudwatchLogging:AccessKey"), builder.Configuration.GetStringValue("AwsCloudwatchLogging:SecretKey")), RegionEndpoint.USEast1);
 
     Log.Logger = new LoggerConfiguration().WriteTo.AmazonCloudWatch(
-        logGroup: builder.Configuration["AwsCloudwatchLogging:LogGroup"],
-        logStreamPrefix: builder.Configuration["AwsCloudwatchLogging:LogStreamPrefix"],
+        logGroup: builder.Configuration.GetStringValue("AwsCloudwatchLogging:LogGroup"),
+        logStreamPrefix: builder.Configuration.GetStringValue("AwsCloudwatchLogging:LogStreamPrefix"),
         restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Verbose,
         createLogGroup: true,
         appendUniqueInstanceGuid: true,

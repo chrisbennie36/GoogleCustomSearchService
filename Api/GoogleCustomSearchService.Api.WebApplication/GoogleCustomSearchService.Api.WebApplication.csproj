@@ -13,10 +13,16 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
     <PackageReference Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageReference Include="Serilog" Version="4.1.0" />
     <PackageReference Include="Serilog.Sinks.AwsCloudWatch" Version="4.3.37" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Utilities.dll">
+      <HintPath>..\..\Refs\Utilities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GoogleCustomSearchService.Api.Domain\GoogleCustomSearchService.Api.Domain.csproj" />

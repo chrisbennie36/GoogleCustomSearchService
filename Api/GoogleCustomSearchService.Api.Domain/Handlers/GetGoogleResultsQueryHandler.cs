@@ -2,6 +2,7 @@ using GoogleCustomSearchService.Api.Domain.Clients.Interfaces;
 using GoogleCustomSearchService.Api.Domain.Queries;
 using GoogleCustomSearchService.Api.Domain.Results;
 using MediatR;
+using Utilities.ResultPattern;
 
 namespace GoogleCustomSearchService.Api.Domain.Handlers;
 
