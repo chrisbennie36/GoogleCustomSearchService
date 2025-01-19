@@ -1,8 +1,16 @@
 ## Google Custom Search Engine Microservice
 
-# API for retrieving search results from a configurable Google Custom Search Engine
+# .Net Core based Microservice which handles retrieving search results from a configurable Google Custom Search Engine based on an input query string
 
-# Next steps
-1) Create API client NuGet package for use in other Microservices
-2) Add unit tests
-3) Add MemoryCache to Controller endpoints to cache results
+# Libraries used
+
+    - MediatR
+    - XUnit
+    - AutoMapper
+    - Serilog
+    - NSwag
+
+# Docker
+
+Build image => docker build -f Dockerfile -t google-custom-search-service .
+Run Container => docker run --rm -p <ConfiguredPortNumber>:8000 google-custom-search-service
