@@ -10,6 +10,10 @@
     - Serilog
     - NSwag
 
+# Architecture
+
+Microservice is deployed in AWS as an ElasticBeanstalk application. The database is deployed in AWS as a Postgres 16.3 Engine with a security group which cotains an ingress rule allowing this Microservice to communicate with it
+
 # Docker
 
 Build image => docker build -f Dockerfile -t google-custom-search-service .
