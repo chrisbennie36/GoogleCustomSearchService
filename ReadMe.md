@@ -17,4 +17,4 @@ Microservice is deployed in AWS as an ElasticBeanstalk application. The database
 # Docker
 
 Build image => docker build -f Dockerfile -t google-custom-search-service .
-Run Container => docker run --rm -p <ConfiguredPortNumber>:8000 google-custom-search-service
+Run Container => docker run --rm -p 5176:8000 google-custom-search-service

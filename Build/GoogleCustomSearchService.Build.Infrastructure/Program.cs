@@ -1,5 +1,5 @@
-﻿using System.Data.Common;
-using Amazon.CDK;
+﻿using Amazon.CDK;
+using Utilities.RecipeRandomizer.Infrastructure.CDK.Constants.ApiGateway;
 
 namespace GoogleCustomSearchService.Build.Infrastructure;
 
@@ -9,19 +9,6 @@ sealed class Program
     {
         var app = new App();
 
-        //DatabaseMigrationLambdaStack dbMigrationLambdaStack = new DatabaseMigrationLambdaStack(app, "database-migration-lambda-stack");
-
-        DatabaseStack dbStack = new DatabaseStack(app, "database-stack", new DatabaseStackProps
-        {
-            //MigrationLambda = dbMigrationLambdaStack.DatabaseMigrationLambda,
-            Env = new Amazon.CDK.Environment
-            {
-                Account = System.Environment.GetEnvironmentVariable("PROJECTS_AWS_DEFAULT_ACCOUNT", EnvironmentVariableTarget.User),
-                Region = "us-east-1",
-                //Region = System.Environment.GetEnvironmentVariable("PROJECTS_AWS_DEFAULT_REGION", EnvironmentVariableTarget.User)
-            }
-        });
-
         GoogleCustomSearchServiceElasticBeanstalkStack ebStack = new GoogleCustomSearchServiceElasticBeanstalkStack(app, "google-custom-search-service-elastic-beanstalk-stack", new GoogleCustomSearchServiceElasticBeanstalkStackProps 
         {
             ApplicationName = "GoogleCustomSearchService",
@@ -30,13 +17,15 @@ sealed class Program
             {
                 Account = System.Environment.GetEnvironmentVariable("PROJECTS_AWS_DEFAULT_ACCOUNT", EnvironmentVariableTarget.User),
                 Region = "us-east-1"
-                //Region = System.Environment.GetEnvironmentVariable("PROJECTS_AWS_DEFAULT_REGION", EnvironmentVariableTarget.User)
             }
         });
 
-        //ebStack.AddDependency(dbStack);
-         
-        //dbMigrationLambdaStack.AddDependency(ebStack);*/
+        GoogleCustomSearchServiceApiGatewayStack apiGatewayStack = new GoogleCustomSearchServiceApiGatewayStack(app, "google-custom-search-service-api-gateway-stack", new GoogleCustomSearchServiceApiGatewayProps
+        {
+            BaseUrl = "http://projects.eba-kry82eby.us-east-1.elasticbeanstalk.com",
+            RestApiId = ApiGatewayExportKeys.RecipeRandomizerApiGatewayRestApiId,
+            RootResourceId = ApiGatewayExportKeys.RecipeRandomizerApiGatewayRootResourceId
+        });
 
         app.Synth();
     }

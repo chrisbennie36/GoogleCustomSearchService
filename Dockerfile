@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0.404 AS base
 WORKDIR /app
+ENV ASPNETCORE_ENVIRONMENT=Development
 EXPOSE 5176
 
 # Ensure we listen on any IP Address 
