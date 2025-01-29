@@ -1,7 +1,4 @@
-
-using System.Text;
 using Amazon.CDK;
-using Amazon.CDK.AWS.EC2;
 using Amazon.CDK.AWS.ElasticBeanstalk;
 using Amazon.CDK.AWS.IAM;
 using Amazon.CDK.AWS.S3.Assets;
@@ -11,13 +8,13 @@ namespace GoogleCustomSearchService.Build.Infrastructure;
 
 public class GoogleCustomSearchServiceElasticBeanstalkStackProps : StackProps
 {
-    public string ApplicationName { get; set; }
-    public IVpc Vpc { get; set;}
+    public required string ApplicationName { get; set; }
 }
 
 public class GoogleCustomSearchServiceElasticBeanstalkStack : Stack
 {
-    public CfnApplication googleCustomSearchServiceElasticBeanstalkStack { get; set; }
+    public CfnApplication ElasticBeanstalkStack { get; set; }
+    public CfnEnvironment GooglecustomSearchServiceEbEnvironment { get; set; }
 
     public GoogleCustomSearchServiceElasticBeanstalkStack(Construct scope, string id, GoogleCustomSearchServiceElasticBeanstalkStackProps props) : base(scope, id)
     {
@@ -39,24 +36,25 @@ public class GoogleCustomSearchServiceElasticBeanstalkStack : Stack
             Path = "../application.zip"
         });
 
-        googleCustomSearchServiceElasticBeanstalkStack = new Amazon.CDK.AWS.ElasticBeanstalk.CfnApplication(this, "google-custom-search-service-elb-app", new CfnApplicationProps
+        ElasticBeanstalkStack = new CfnApplication(this, "google-custom-search-service-elb-app", new CfnApplicationProps
         {
             ApplicationName = props.ApplicationName,
         });
 
-        CfnApplicationVersion applicationVersion = new Amazon.CDK.AWS.ElasticBeanstalk.CfnApplicationVersion(this, "google-custom-search-service-elb-app-version", new CfnApplicationVersionProps
+        CfnApplicationVersion applicationVersion = new CfnApplicationVersion(this, "google-custom-search-service-elb-app-version", new CfnApplicationVersionProps
         {
             ApplicationName = props.ApplicationName,
-            SourceBundle = new Amazon.CDK.AWS.ElasticBeanstalk.CfnApplicationVersion.SourceBundleProperty
+            SourceBundle = new CfnApplicationVersion.SourceBundleProperty
             {
                 S3Bucket = archive.S3BucketName,
                 S3Key = archive.S3ObjectKey
             }
         });
 
-        CfnEnvironment googleCustomSearchServiceElasticBeanstalkEnvironment = new CfnEnvironment(this, "google-custom-search-service-elb-environment", new CfnEnvironmentProps
+        CfnEnvironment googleCustomSearchServiceEbEnvironment = new CfnEnvironment(this, "google-custom-search-service-elb-environment", new CfnEnvironmentProps
         {
             ApplicationName = props.ApplicationName,
+            CnamePrefix = "googlecustomsearch",
             OptionSettings = new CfnEnvironment.OptionSettingProperty[] 
             {
                 new CfnEnvironment.OptionSettingProperty{ Namespace = "aws:autoscaling:launchconfiguration", OptionName = "IamInstanceProfile", Value = instanceProfile.InstanceProfileArn },
@@ -67,13 +65,15 @@ public class GoogleCustomSearchServiceElasticBeanstalkStack : Stack
                 //new CfnEnvironment.OptionSettingProperty { Namespace = "aws:ec2:vpc", OptionName = "Subnets", Value = ConcatenateVpcSubnetIds(props.Vpc.PrivateSubnets) },
                 //new CfnEnvironment.OptionSettingProperty { Namespace = "aws:ec2:vpc", OptionName = "VPCId", Value = props.Vpc.VpcId }
             },
-            EnvironmentName = "PROJECTS",   //Must be > 4 chars
+            EnvironmentName = "googlecustomsearchengine",   //Must be > 4 chars
             SolutionStackName = "64bit Amazon Linux 2023 v3.2.1 running .NET 8",
             VersionLabel = applicationVersion.Ref   //Critical apparently
         });
 
-        googleCustomSearchServiceElasticBeanstalkEnvironment.AddDependency(googleCustomSearchServiceElasticBeanstalkStack);
-        applicationVersion.AddDependency(googleCustomSearchServiceElasticBeanstalkStack);
+        googleCustomSearchServiceEbEnvironment.AddDependency(ElasticBeanstalkStack);
+        applicationVersion.AddDependency(ElasticBeanstalkStack);
+
+        GooglecustomSearchServiceEbEnvironment = googleCustomSearchServiceEbEnvironment;
     }
 
     /*private string ConcatenateVpcSubnetIds(IEnumerable<ISubnet> subnets)

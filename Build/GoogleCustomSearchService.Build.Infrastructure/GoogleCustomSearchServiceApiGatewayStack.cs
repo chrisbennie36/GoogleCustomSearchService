@@ -1,15 +1,14 @@
 using Amazon.CDK;
 using Amazon.CDK.AWS.APIGateway;
 using Constructs;
-using Utilities.RecipeRandomizer.Infrastructure.CDK.Constants.ApiGateway;
 
 namespace GoogleCustomSearchService.Build.Infrastructure;
 
 public class GoogleCustomSearchServiceApiGatewayProps : StackProps
 {
     public required string BaseUrl { get; set; }
-    public string? RestApiId { get; set; }
-    public string? RootResourceId { get; set; }
+    public string? RestApiIdExportKey { get; set; }
+    public string? RootResourceIdExportKey { get; set; }
 }
 
 public class GoogleCustomSearchServiceApiGatewayStack : Stack
@@ -18,9 +17,11 @@ public class GoogleCustomSearchServiceApiGatewayStack : Stack
     {
         IRestApi restApi;
 
-        if(!string.IsNullOrWhiteSpace(props.RestApiId) && !string.IsNullOrWhiteSpace(props.RootResourceId))
+        Console.WriteLine(props.BaseUrl);
+
+        if(!string.IsNullOrWhiteSpace(props.RestApiIdExportKey) && !string.IsNullOrWhiteSpace(props.RootResourceIdExportKey))
         {
-            restApi = GetExistingRestApi(this, ApiGatewayExportKeys.RecipeRandomizerApiGatewayRestApiId, ApiGatewayExportKeys.RecipeRandomizerApiGatewayRootResourceId);
+            restApi = GetExistingRestApi(this, props.RestApiIdExportKey, props.RootResourceIdExportKey);
         }
         else
         {
